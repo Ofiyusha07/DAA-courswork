@@ -43,6 +43,93 @@ Functions to Analyze
 4. T(n) = 2T(n - 1) + 1
 Each function will be analyzed using recurrence relations, step-by-step calculations, recursion depth, recursion trees, and asymptotic time complexity.
 
+Function 1
+Code:
+
+void fun(int n) {
+    if (n > 0) {
+        System.out.println(n);
+        fun(n - 1);
+    }
+}
+
+-How does it work?
+The function checks if n is greater than 0. If yes, it prints n and calls itself with n - 1.
+For example, if n = 4:
+fun(4) → print 4
+fun(3) → print 3
+fun(2) → print 2
+fun(1) → print 1
+fun(0) → stop
+
+-Recurrence Relation
+There is one recursive call, and one print operation outside the recursive call.
+T(n) = T(n - 1) + 1
+
+-Values of a, b and f(n)
+a = 1 (one recursive call)
+b = 1 (n decreases by 1)
+f(n) = 1 (one print operation)
+
+-Step-by-Step Solution
+Starting with:
+T(n) = T(n - 1) + 1
+Expand the recurrence:
+T(n) = T(n - 2) + 1 + 1
+T(n) = T(n - 3) + 1 + 1 + 1
+After k steps:
+T(n) = T(n - k) + k
+The recursion stops when n - k = 0.
+Therefore, k = n.
+T(n) = T(0) + n
+Since T(0) is constant:
+T(n) = n + 1
+
+-Recursion Depth
+The function decreases n by 1 in every call.
+For example, n = 4:
+4 → 3 → 2 → 1 → 0
+The number of recursive steps is n. The maximum number of calls, including the final base case, is n + 1.
+
+-Recursion Tree
+
+          fun(n)
+            |
+          fun(n-1)
+            |
+          fun(n-2)
+            |
+          fun(n-3)
+            |
+            ...
+            |
+          fun(1)
+            |
+          fun(0)
+           STOP
+
+Each call creates only one new recursive call. The tree is a straight line.
+
+-Master Theorem for Decreasing Functions
+General formula:
+T(n) = aT(n - b) + f(n)
+For this function:
+a = 1, b = 1, f(n) = 1.
+Since there is one recursive call and the work at each level is constant, we add 1 for each of the n levels.
+T(n) = 1 + 1 + 1 + … + 1
+There are n levels of work.
+T(n) = n
+Applicable case: The a = 1 case for decreasing recurrences, where the total work is the sum of f(n) over all levels.
+
+-Final Time Complexity
+T(n) = n + 1
+Ignoring constants and smaller terms:
+O(n) — Linear Time Complexity
+
+-Comparison
+The manual calculation gives O(n). The decreasing recurrence analysis also gives O(n).
+Both methods give the same result.
+
 4. Task 2: Dividing Functions
 This section analyzes three recursive functions where the input size is divided by 2.
 Functions to Analyze
