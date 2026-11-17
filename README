@@ -1,1 +1,61 @@
+Design and Analysis of Algorithms
+Coursework: Recurrence Relations and Master Theorem
+Course: Design and Analysis of Algorithms
 
+1. Introduction
+The purpose of this coursework is to understand how recursive algorithms work and how to analyze their time complexity using recurrence relations and the Master Theorem.
+
+This coursework is divided into two tasks:
+Task 1: Decreasing Functions
+Task 2: Dividing Functions
+Seven recursive functions are analyzed in total.
+
+2. Basic Concepts
+
+2.1 Recursion
+Recursion is a programming technique in which a function calls itself to solve a smaller version of the same problem.
+
+2.2 Recurrence Relation
+A recurrence relation describes the running time of a recursive algorithm.
+It consists of:
+T(n): Total running time.
+a: Number of recursive calls.
+b: Amount by which the input size decreases or the division factor.
+f(n): Work performed outside recursive calls.
+
+2.3 Time Complexity
+Time complexity describes how the running time of an algorithm grows as the input size increases.
+
+Common complexity classes:
+O(1) — Constant time
+O(log n) — Logarithmic time
+O(n) — Linear time
+O(n log n) — Linearithmic time
+O(n²) — Quadratic time
+O(2ⁿ) — Exponential time
+
+3. Task 1: Decreasing Functions
+This section analyzes four recursive functions where the input size decreases by a fixed amount.
+Functions to Analyze
+1. T(n) = T(n - 1) + 1
+2. T(n) = T(n - 1) + n
+3. T(n) = T(n - 1) + log n
+4. T(n) = 2T(n - 1) + 1
+Each function will be analyzed using recurrence relations, step-by-step calculations, recursion depth, recursion trees, and asymptotic time complexity.
+
+4. Task 2: Dividing Functions
+This section analyzes three recursive functions where the input size is divided by 2.
+Functions to Analyze
+1. T(n) = T(n/2) + 1
+2. T(n) = T(n/2) + n
+3. T(n) = 2T(n/2) + n
+Each function will be analyzed using recursion trees, the number of calls at each level, work per level, tree height, and the Master Theorem.
+
+5. Comparison of Results
+The results of manual calculations and the Master Theorem will be compared for all seven functions.
+
+6. Conclusion
+The coursework demonstrates how recurrence relations can be used to analyze recursive algorithms and determine their time complexity.
+
+7. References
+Resources used for studying recurrence relations, recursion trees, and the Master Theorem will be listed here.
