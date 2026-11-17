@@ -12,10 +12,10 @@ Seven recursive functions are analyzed in total.
 
 2. Basic Concepts
 
-2.1 Recursion
+-Recursion
 Recursion is a programming technique in which a function calls itself to solve a smaller version of the same problem.
 
-2.2 Recurrence Relation
+-Recurrence Relation
 A recurrence relation describes the running time of a recursive algorithm.
 It consists of:
 T(n): Total running time.
@@ -23,9 +23,8 @@ a: Number of recursive calls.
 b: Amount by which the input size decreases or the division factor.
 f(n): Work performed outside recursive calls.
 
-2.3 Time Complexity
+-Time Complexity
 Time complexity describes how the running time of an algorithm grows as the input size increases.
-
 Common complexity classes:
 O(1) — Constant time
 O(log n) — Logarithmic time
@@ -91,25 +90,6 @@ For example, n = 4:
 4 → 3 → 2 → 1 → 0
 The number of recursive steps is n. The maximum number of calls, including the final base case, is n + 1.
 
--Recursion Tree
-
-          fun(n)
-            |
-          fun(n-1)
-            |
-          fun(n-2)
-            |
-          fun(n-3)
-            |
-            ...
-            |
-          fun(1)
-            |
-          fun(0)
-           STOP
-
-Each call creates only one new recursive call. The tree is a straight line.
-
 -Master Theorem for Decreasing Functions
 General formula:
 T(n) = aT(n - b) + f(n)
@@ -149,16 +129,16 @@ fun(2) → 2 prints
 fun(1) → 1 print
 fun(0) → stop
 
-Recurrence Relation
+-Recurrence Relation
 The function makes one recursive call. Before that, it performs n operations in the loop.
 T(n) = T(n - 1) + n
 
-Values of a, b and f(n)
+-Values of a, b and f(n)
 a = 1 (one recursive call)
 b = 1 (n decreases by 1)
 f(n) = n (the loop runs n times)
 
-Step-by-Step Solution
+-Step-by-Step Solution
 Starting with:
 T(n) = T(n - 1) + n
 Expand the recurrence:
@@ -174,28 +154,11 @@ Using the sum formula:
 Therefore:
 T(n) = T(0) + n(n + 1) / 2
 
-Recursion Depth
+-Recursion Depth
 The input size decreases by 1 in every call.
 For n = 4:
 4 → 3 → 2 → 1 → 0
 There are n recursive steps and n + 1 total calls, including the base case.
-
-Recursion Tree
-
-           fun(n)       Work: n
-              |
-           fun(n-1)     Work: n-1
-              |
-           fun(n-2)     Work: n-2
-              |
-           fun(n-3)     Work: n-3
-              |
-              ...
-              |
-           fun(1)       Work: 1
-              |
-           fun(0)       Stop
-
 The tree has one branch. The amount of work decreases at every level.
 
 Master Theorem for Decreasing Functions
@@ -238,16 +201,16 @@ i = 8
 Stop (16 is greater than 10)
 The loop runs about log₂(n) times. After the loop, the function calls itself with n - 1.
 
-Recurrence Relation
+-Recurrence Relation
 The function makes one recursive call. The loop takes logarithmic time.
 T(n) = T(n - 1) + log n
 
-Values of a, b and f(n)
+-Values of a, b and f(n)
 a = 1 (one recursive call)
 b = 1 (n decreases by 1)
 f(n) = log n (the loop doubles i)
 
-Step-by-Step Solution
+-Step-by-Step Solution
 Starting with:
 T(n) = T(n - 1) + log n
 Expand the recurrence:
@@ -265,31 +228,14 @@ log(n!) = Θ(n log n)
 Therefore:
 T(n) = Θ(n log n)
 
-Recursion Depth
+-Recursion Depth
 The input size decreases by 1 in every call.
 For n = 4:
 4 → 3 → 2 → 1 → 0
 There are n recursive steps and n + 1 total calls, including the base case.
-
-Recursion Tree
-
-           fun(n)       Work: log n
-              |
-           fun(n-1)     Work: log(n-1)
-              |
-           fun(n-2)     Work: log(n-2)
-              |
-           fun(n-3)     Work: log(n-3)
-              |
-              ...
-              |
-           fun(1)       Work: log 1
-              |
-           fun(0)       Stop
-
 Each call creates one new recursive call. The work at each level is logarithmic.
 
-Master Theorem for Decreasing Functions
+-Master Theorem for Decreasing Functions
 General formula:
 T(n) = aT(n - b) + f(n)
 For this function:
@@ -302,11 +248,11 @@ Using Stirling’s approximation:
 T(n) = Θ(n log n)
 Applicable case: The a = 1 case for decreasing recurrences. We sum f(n) over all levels.
 
-Final Time Complexity
+-Final Time Complexity
 T(n) = Θ(n log n)
 O(n log n) — Linearithmic Time Complexity
 
-Comparison
+-Comparison
 The manual solution gives O(n log n). The decreasing recurrence analysis also gives O(n log n).
 Both methods give the same result.
 
@@ -336,16 +282,16 @@ fun(2)
 
 Each function call creates two new calls.
 
-Recurrence Relation
+-Recurrence Relation
 There are two recursive calls and one print operation.
 T(n) = 2T(n - 1) + 1
 
-Values of a, b and f(n)
+-Values of a, b and f(n)
 a = 2 (two recursive calls)
 b = 1 (n decreases by 1)
 f(n) = 1 (one print operation)
 
-Step-by-Step Solution
+-Step-by-Step Solution
 Starting with:
 T(n) = 2T(n - 1) + 1
 Expand the recurrence:
@@ -361,7 +307,7 @@ T(n) = 2^n T(0) + 2^n - 1
 Since T(0) is constant:
 T(n) = Θ(2^n)
 
-Recursion Depth
+-Recursion Depth
 The input decreases by 1, but each call creates two new calls.
 For n = 2:
 fun(2)
@@ -372,19 +318,7 @@ fun(2)
     fun(0)
     fun(0)
 The recursion depth is n. The total number of calls grows exponentially.
-
-Recursion Tree
-
-                  fun(n)
-                 /      \
-           fun(n-1)    fun(n-1)
-             /  \        /  \
-         fun(n-2) ...  ... fun(n-2)
-            / \            / \
-           ...            ...
-
 Number of calls at each level:
-
 Level 0: 1 call
 Level 1: 2 calls
 Level 2: 4 calls
@@ -392,7 +326,7 @@ Level 3: 8 calls
 Level k: 2^k calls
 The number of calls doubles at every level.
 
-Master Theorem for Decreasing Functions
+-Master Theorem for Decreasing Functions
 General formula:
 T(n) = aT(n - b) + f(n)
 For this function:
@@ -406,14 +340,57 @@ Therefore:
 T(n) = Θ(2^n)
 Applicable case: The a > 1 case for decreasing recurrences. The number of recursive calls grows exponentially, so the total work is exponential.
 
-Final Time Complexity
+-Final Time Complexity
 T(n) = Θ(2^n)
 O(2^n) — Exponential Time Complexity
 
-Comparison
+-Comparison
 The manual solution gives O(2^n). The decreasing recurrence analysis also gives O(2^n).
 Both methods give the same result.
 (для Function 4 число всех вызовов экспоненциальное, хотя глубина рекурсии остаётся линейной — n.)
+
+Master Theorem for Decreasing Functions
+
+The decreasing recurrence has the following general form:
+T(n) = aT(n - b) + f(n)
+Where:
+a is the number of recursive calls.
+b is the amount by which n decreases.
+f(n) is the work done outside the recursive calls.
+
+-Main Cases
+There are two main situations.
+Case 1: a = 1
+There is only one recursive call at each level.
+We add the work from all levels:
+T(n) = f(n) + f(n-1) + … + f(1)
+Examples:
+If f(n) = 1, then T(n) = O(n).
+If f(n) = n, then T(n) = O(n²).
+If f(n) = log n, then T(n) = O(n log n).
+Case 2: a > 1
+There are two or more recursive calls at each level.
+The number of calls grows exponentially.
+For example:
+T(n) = 2T(n-1) + 1
+The number of calls at each level is:
+1, 2, 4, 8, 16, …
+The total work grows exponentially:
+T(n) = O(2ⁿ)
+
+-Comparison of All Four Functions
+Function	a	b	f(n)	Time Complexity
+Function 1	1	1	1	O(n)
+Function 2	1	1	n	O(n²)
+Function 3	1	1	log n	O(n log n)
+Function 4	2	1	1	O(2ⁿ)
+
+-Conclusion
+The four functions have different time complexities because they perform different amounts of work and make different numbers of recursive calls.
+Functions 1, 2, and 3 make only one recursive call, so their work is added over all levels.
+Function 4 makes two recursive calls at every level. This makes the number of calls grow much faster.
+The results from manual calculations match the results from the decreasing recurrence analysis.
+
 4. Task 2: Dividing Functions
 This section analyzes three recursive functions where the input size is divided by 2.
 Functions to Analyze
