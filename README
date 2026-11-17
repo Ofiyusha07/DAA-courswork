@@ -399,6 +399,81 @@ Functions to Analyze
 3. T(n) = 2T(n/2) + n
 Each function will be analyzed using recursion trees, the number of calls at each level, work per level, tree height, and the Master Theorem.
 
+Function 1
+Code:
+void fun(int n) {
+    if (n > 1) {
+        System.out.println(n);
+        fun(n / 2);
+    }
+}
+
+How does it work?
+The function prints n and then calls itself with n / 2.
+For example, if n = 16:
+fun(16) → print 16
+fun(8)  → print 8
+fun(4)  → print 4
+fun(2)  → print 2
+fun(1)  → stop
+The input size becomes two times smaller after every call.
+
+-Recurrence Relation
+There is one recursive call and one print operation.
+T(n) = T(n / 2) + 1
+
+-Values of a, b and f(n)
+a = 1 (one recursive call)
+b = 2 (the input is divided by 2)
+f(n) = 1 (one print operation)
+
+-Recursion Tree
+For n = 16:
+Level	Number of calls	Input size	Work
+0	1	16	1
+1	1	8	1
+2	1	4	1
+3	1	2	1
+4	1	1	0
+There is only one call at each level.
+
+-Tree Height
+The input is divided by 2 until it becomes 1.
+n / 2^k = 1
+n = 2^k
+k = log₂(n)
+The tree height is log₂(n). The total number of calls, including the last call, is approximately log₂(n) + 1.
+
+-Total Work
+Each level performs one operation.
+T(n) = 1 + 1 + 1 + … + 1
+There are log₂(n) levels with work.
+Therefore:
+T(n) = Θ(log n)
+
+-Master Theorem
+General formula:
+T(n) = aT(n / b) + f(n)
+For this function:
+a = 1
+b = 2
+f(n) = 1
+First, calculate:
+n^(log₂ 1) = n^0 = 1
+We compare f(n) with n^(log₂ 1).
+Both are equal to 1.
+Applicable case: Case 2
+The Master Theorem gives:
+T(n) = Θ(log n)
+
+-Final Time Complexity
+O(log n) — Logarithmic Time Complexity
+
+-Comparison
+The recursion tree gives O(log n).
+The Master Theorem also gives O(log n).
+Both methods give the same result.
+
 5. Comparison of Results
 The results of manual calculations and the Master Theorem will be compared for all seven functions.
 
