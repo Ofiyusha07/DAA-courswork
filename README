@@ -130,6 +130,290 @@ O(n) — Linear Time Complexity
 The manual calculation gives O(n). The decreasing recurrence analysis also gives O(n).
 Both methods give the same result.
 
+Function 2
+Code:
+void fun(int n) {
+    if (n > 0) {
+        for (int i = 0; i < n; i++) {
+            System.out.println(n);
+        }
+        fun(n - 1);
+    }
+}
+
+The function runs a loop from 0 to n - 1. It prints n exactly n times. After the loop, it calls itself with n - 1.
+For example, if n = 4:
+fun(4) → 4 prints
+fun(3) → 3 prints
+fun(2) → 2 prints
+fun(1) → 1 print
+fun(0) → stop
+
+Recurrence Relation
+The function makes one recursive call. Before that, it performs n operations in the loop.
+T(n) = T(n - 1) + n
+
+Values of a, b and f(n)
+a = 1 (one recursive call)
+b = 1 (n decreases by 1)
+f(n) = n (the loop runs n times)
+
+Step-by-Step Solution
+Starting with:
+T(n) = T(n - 1) + n
+Expand the recurrence:
+T(n) = T(n - 2) + (n - 1) + n
+T(n) = T(n - 3) + (n - 2) + (n - 1) + n
+After k steps:
+T(n) = T(n - k) + (n - k + 1) + … + (n - 1) + n
+The recursion stops when n - k = 0.
+Therefore, k = n.
+T(n) = T(0) + 1 + 2 + 3 + … + n
+Using the sum formula:
+1 + 2 + … + n = n(n + 1) / 2
+Therefore:
+T(n) = T(0) + n(n + 1) / 2
+
+Recursion Depth
+The input size decreases by 1 in every call.
+For n = 4:
+4 → 3 → 2 → 1 → 0
+There are n recursive steps and n + 1 total calls, including the base case.
+
+Recursion Tree
+
+           fun(n)       Work: n
+              |
+           fun(n-1)     Work: n-1
+              |
+           fun(n-2)     Work: n-2
+              |
+           fun(n-3)     Work: n-3
+              |
+              ...
+              |
+           fun(1)       Work: 1
+              |
+           fun(0)       Stop
+
+The tree has one branch. The amount of work decreases at every level.
+
+Master Theorem for Decreasing Functions
+General formula:
+T(n) = aT(n - b) + f(n)
+For this function:
+a = 1, b = 1, f(n) = n.
+Since there is one recursive call, we add the work from every level:
+T(n) = n + (n - 1) + (n - 2) + … + 1
+Using the sum formula:
+T(n) = n(n + 1) / 2
+Applicable case: The a = 1 case for decreasing recurrences. The total work is the sum of f(n) over all levels.
+
+Final Time Complexity
+T(n) = n(n + 1) / 2 + T(0)
+After removing constants and smaller terms:
+O(n²) — Quadratic Time Complexity
+
+Comparison
+The manual solution gives O(n²). The decreasing recurrence analysis also gives O(n²).
+Both methods give the same result.
+
+Function 3
+Code:
+void fun(int n) {
+    if (n > 0) {
+        for (int i = 1; i < n; i = i * 2) {
+            System.out.println(n);
+        }
+        fun(n - 1);
+    }
+}
+
+The function uses a loop where i starts at 1 and doubles after every iteration.
+For example, if n = 10:
+i = 1
+i = 2
+i = 4
+i = 8
+Stop (16 is greater than 10)
+The loop runs about log₂(n) times. After the loop, the function calls itself with n - 1.
+
+Recurrence Relation
+The function makes one recursive call. The loop takes logarithmic time.
+T(n) = T(n - 1) + log n
+
+Values of a, b and f(n)
+a = 1 (one recursive call)
+b = 1 (n decreases by 1)
+f(n) = log n (the loop doubles i)
+
+Step-by-Step Solution
+Starting with:
+T(n) = T(n - 1) + log n
+Expand the recurrence:
+T(n) = T(n - 2) + log(n - 1) + log n
+T(n) = T(n - 3) + log(n - 2) + log(n - 1) + log n
+After k steps:
+T(n) = T(n - k) + log(n-k+1) + … + log(n)
+The recursion stops when n - k = 0.
+Therefore, k = n.
+T(n) = T(0) + log 1 + log 2 + … + log n
+Using the logarithm rule:
+log 1 + log 2 + … + log n = log(n!)
+Using Stirling’s approximation:
+log(n!) = Θ(n log n)
+Therefore:
+T(n) = Θ(n log n)
+
+Recursion Depth
+The input size decreases by 1 in every call.
+For n = 4:
+4 → 3 → 2 → 1 → 0
+There are n recursive steps and n + 1 total calls, including the base case.
+
+Recursion Tree
+
+           fun(n)       Work: log n
+              |
+           fun(n-1)     Work: log(n-1)
+              |
+           fun(n-2)     Work: log(n-2)
+              |
+           fun(n-3)     Work: log(n-3)
+              |
+              ...
+              |
+           fun(1)       Work: log 1
+              |
+           fun(0)       Stop
+
+Each call creates one new recursive call. The work at each level is logarithmic.
+
+Master Theorem for Decreasing Functions
+General formula:
+T(n) = aT(n - b) + f(n)
+For this function:
+a = 1, b = 1, f(n) = log n.
+Since there is one recursive call, we add the work from all levels:
+T(n) = log 1 + log 2 + … + log n
+Using the logarithm rule:
+T(n) = log(n!)
+Using Stirling’s approximation:
+T(n) = Θ(n log n)
+Applicable case: The a = 1 case for decreasing recurrences. We sum f(n) over all levels.
+
+Final Time Complexity
+T(n) = Θ(n log n)
+O(n log n) — Linearithmic Time Complexity
+
+Comparison
+The manual solution gives O(n log n). The decreasing recurrence analysis also gives O(n log n).
+Both methods give the same result.
+
+Function 4
+Code:
+void fun(int n) {
+    if (n > 0) {
+        System.out.println(n);
+        fun(n - 1);
+        fun(n - 1);
+    }
+}
+
+The function prints n and then calls itself two times with n - 1.
+For example, if n = 2:
+
+fun(2)
+  print 2
+  fun(1)
+    print 1
+    fun(0) → stop
+    fun(0) → stop
+  fun(1)
+    print 1
+    fun(0) → stop
+    fun(0) → stop
+
+Each function call creates two new calls.
+
+Recurrence Relation
+There are two recursive calls and one print operation.
+T(n) = 2T(n - 1) + 1
+
+Values of a, b and f(n)
+a = 2 (two recursive calls)
+b = 1 (n decreases by 1)
+f(n) = 1 (one print operation)
+
+Step-by-Step Solution
+Starting with:
+T(n) = 2T(n - 1) + 1
+Expand the recurrence:
+T(n) = 2[2T(n - 2) + 1] + 1
+T(n) = 4T(n - 2) + 2 + 1
+Expand again:
+T(n) = 8T(n - 3) + 4 + 2 + 1
+After k steps:
+T(n) = 2^k T(n - k) + 2^k - 1
+The recursion stops when n - k = 0.
+Therefore, k = n.
+T(n) = 2^n T(0) + 2^n - 1
+Since T(0) is constant:
+T(n) = Θ(2^n)
+
+Recursion Depth
+The input decreases by 1, but each call creates two new calls.
+For n = 2:
+fun(2)
+  fun(1)
+    fun(0)
+    fun(0)
+  fun(1)
+    fun(0)
+    fun(0)
+The recursion depth is n. The total number of calls grows exponentially.
+
+Recursion Tree
+
+                  fun(n)
+                 /      \
+           fun(n-1)    fun(n-1)
+             /  \        /  \
+         fun(n-2) ...  ... fun(n-2)
+            / \            / \
+           ...            ...
+
+Number of calls at each level:
+
+Level 0: 1 call
+Level 1: 2 calls
+Level 2: 4 calls
+Level 3: 8 calls
+Level k: 2^k calls
+The number of calls doubles at every level.
+
+Master Theorem for Decreasing Functions
+General formula:
+T(n) = aT(n - b) + f(n)
+For this function:
+a = 2, b = 1, f(n) = 1.
+There are two recursive calls at every step.
+The total work is:
+T(n) = 1 + 2 + 4 + 8 + … + 2^n
+Using the geometric sum formula:
+T(n) = 2^(n+1) - 1
+Therefore:
+T(n) = Θ(2^n)
+Applicable case: The a > 1 case for decreasing recurrences. The number of recursive calls grows exponentially, so the total work is exponential.
+
+Final Time Complexity
+T(n) = Θ(2^n)
+O(2^n) — Exponential Time Complexity
+
+Comparison
+The manual solution gives O(2^n). The decreasing recurrence analysis also gives O(2^n).
+Both methods give the same result.
+(для Function 4 число всех вызовов экспоненциальное, хотя глубина рекурсии остаётся линейной — n.)
 4. Task 2: Dividing Functions
 This section analyzes three recursive functions where the input size is divided by 2.
 Functions to Analyze
